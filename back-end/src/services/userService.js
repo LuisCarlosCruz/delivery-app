@@ -39,7 +39,27 @@ async function register(name, email, password, role = 'customer') {
   };
 }
 
+async function adminRegister(body) {
+  const { name, email, password, role, userRole } = body;
+  const passwordHash = cryptHashMd5(password);
+  if (userRole !== 'admin') {
+    throw new Error('You are not an admin');
+  }
+  const userExists = await users.findOne({ where: { email } });
+  if (userExists) {
+    throw new Error('User already exists');
+  }
+  const user = await users.create({ name, email, password: passwordHash, role });
+  return {
+    name: user.name,
+    email: user.email,
+    role: user.role,
+    token: generateToken({ id: user.id }),
+  };
+}
+
 module.exports = {
   login,
   register,
+  adminRegister,
 };

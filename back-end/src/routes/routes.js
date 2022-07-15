@@ -19,4 +19,12 @@ routes.post(
   userController.register,
 );
 
+routes.post(
+  '/adminRegister',
+  validateEmail,
+  validatePassword,
+  validateName,
+  userController.adminRegister,
+);
+
 module.exports = routes;

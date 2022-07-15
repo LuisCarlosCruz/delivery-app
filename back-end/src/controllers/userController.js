@@ -20,7 +20,17 @@ async function register(request, response) {
   }
 }
 
+async function adminRegister(request, response) {
+  try {
+    const user = await userService.adminRegister(request.body);
+    response.status(201).json(user);
+  } catch (error) {
+    response.status(409).json({ message: error.message });
+  }
+}
+
 module.exports = {
   login,
   register,
+  adminRegister,
 };
