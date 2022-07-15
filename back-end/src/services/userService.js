@@ -11,9 +11,35 @@ async function login(email, password) {
   if (user.password !== passwordHash) {
     throw new Error('Invalid password');
   }
-  return generateToken({ id: user.id });
+  return {
+    name: user.name,
+    email: user.email,
+    role: user.role,
+    token: generateToken({ id: user.id }),
+  };
+}
+
+async function register(name, email, password, role = 'customer') {
+  const passwordHash = cryptHashMd5(password);
+  const userExists = await users.findOne({ where: { email } });
+  if (userExists) {
+    throw new Error('User already exists');
+  }
+  const user = await users.create({
+    name,
+    email,
+    password: passwordHash,
+    role,
+  });
+  return {
+    name: user.name,
+    email: user.email,
+    role: user.role,
+    token: generateToken({ id: user.id }),
+  };
 }
 
 module.exports = {
   login,
+  register,
 };
