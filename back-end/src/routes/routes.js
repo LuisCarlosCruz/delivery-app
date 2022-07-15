@@ -1,6 +1,7 @@
 const express = require('express');
 const userController = require('../controllers/userController');
 const { validateEmail, validatePassword } = require('../middlewares/userValidations');
+
 const routes = express.Router();
 
 routes.post(
@@ -10,4 +11,4 @@ routes.post(
   userController.login,
 );
 
-module.exports =  routes;
+module.exports = routes;
