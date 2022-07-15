@@ -5,7 +5,7 @@ import MainContext from '../Context';
 const MainProvider = ({ children }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  // console.log(`email:${email} | password: ${password}`);
+  console.log(`email:${email} | password: ${password}`);
 
   const contextValues = {
     email,
