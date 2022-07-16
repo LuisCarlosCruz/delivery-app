@@ -35,14 +35,13 @@ button {
   font-size: large;
 }
 
-.btn-products,
-.btn-orders {
+.btn-products, .btn-orders {
   align-items: center;
   background-color: rgba(47, 193, 140, 1);
   color: rgba(242, 255, 252, 1);
   display: flex;
   font-size: 21px;
-  font-weight: bold;
+  font-weight: 500;
   height: 80px;
   justify-content: center;
   text-decoration: none;
