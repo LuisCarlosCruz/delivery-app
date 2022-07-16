@@ -18,7 +18,7 @@ ul {
 
 li {
   align-items: center;
-  border: 1px solid #B1C2BE;
+  border: 1px solid #b1c2be;
   display: flex;
   flex-direction: column;
   margin: 10px;
@@ -27,9 +27,9 @@ li {
 }
 
 li button {
-  background: #036B52;
+  background: #036b52;
   border-radius: 5px;
-  color:#B1C2BE;
+  color: #b1c2be;
   font-size: x-large;
   font-weight: 500;
   height: 40px;
@@ -37,7 +37,7 @@ li button {
 }
 
 li input {
-  border: 1px solid #B1C2BE;
+  border: 1px solid #b1c2be;
   font-size: large;
   height: 35px;
   text-align: center;
