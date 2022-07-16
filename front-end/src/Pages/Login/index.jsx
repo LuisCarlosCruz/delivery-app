@@ -1,32 +1,18 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import { MainContext } from '../../store';
 
 const Login = () => {
-  const { setEmail, setPassword } = useContext(MainContext);
-  const [user, setUser] = useState({
-    email: '',
-    password: '',
-  });
+  const { setEmail, setPassword, userLoginApi, statusCode } = useContext(MainContext);
 
-  const handleEmail = ({ target }) => setUser({ ...user, email: target.value });
-  const handlePassword = ({ target }) => setUser({ ...user, password: target.value });
+  const handleEmail = ({ target }) => setEmail(target.value);
+  const handlePassword = ({ target }) => setPassword(target.value);
 
-  const validateUser = () => {
-    const minLength = 6;
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const boolValid = emailRegex.test(user.email) && user.password.length > minLength;
-    if (boolValid) {
-      setEmail(user.email);
-      setPassword(user.password);
-    } else {
-      console.log('Dados inválidos');
-    }
-  };
-
+  const statusError = 400;
+  const messageError = 'Email ou Senha Inválido';
   return (
     <form>
       <label htmlFor="email">
-        Email
+        Email:
         <input
           type="text"
           placeholder="email@trybeer.com.br"
@@ -34,7 +20,7 @@ const Login = () => {
         />
       </label>
       <label htmlFor="password">
-        Senha
+        Senha:
         <input
           type="password"
           placeholder="***********"
@@ -43,11 +29,12 @@ const Login = () => {
       </label>
       <button
         type="button"
-        onClick={ () => validateUser() }
+        onClick={ userLoginApi }
       >
         LOGIN
       </button>
       <button type="button">Ainda não tenho conta</button>
+      <p>{statusCode === statusError && messageError}</p>
     </form>
   );
 };
