@@ -1,5 +1,5 @@
 import React from 'react';
-import COMPONENT from '../../Components/index';
+import COMPONENT from '../../Components';
 
 const arrayTest = [
   { id: 1, name: 'Skol Lata 250ml', price: 2.20, url: '/images/skol_lata_350ml.jpg' },
