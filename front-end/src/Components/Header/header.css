@@ -1,0 +1,64 @@
+.navbar {
+  align-items: center;
+  background-color: rgba(3, 107, 82, 1);
+  color: rgba(242, 255, 252, 1);
+  display: flex;
+  height: 80px;
+  justify-content: center;
+  position: absolute;
+  width: 100%;
+}
+
+.itens-right {
+  align-items: center;
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.itens-left {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+button {
+  border: none;
+  cursor: pointer;
+  height: 80px;
+  width: 250px;
+}
+
+.btn-logout {
+  background-color: rgba(5, 108, 249, 1);
+  color: rgba(242, 255, 252, 1);
+  font-size: large;
+}
+
+.btn-products, .btn-orders {
+  align-items: center;
+  background-color: rgba(47, 193, 140, 1);
+  color: rgba(242, 255, 252, 1);
+  display: flex;
+  font-size: 21px;
+  font-weight: 500;
+  height: 80px;
+  justify-content: center;
+  text-decoration: none;
+  width: 250px;
+}
+
+.btn-orders {
+  background-color: rgba(3, 107, 82, 1);
+}
+
+.itens-right div {
+  align-items: center;
+  background-color: rgba(66, 25, 129, 1);
+  display: flex;
+  height: 80px;
+}
+
+h1 {
+  padding: 0 1.5rem;
+}
