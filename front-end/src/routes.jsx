@@ -7,6 +7,7 @@ const MainRoutes = () => (
     <Route path="/" element={ <Navigate replace to="/login" /> } />
     <Route path="/login" element={ <PAGES.Login /> } />
     <Route path="/customer/products" element={ <PAGES.Customer /> } />
+    <Route path="/register" element={ <PAGES.Register /> } />
   </Routes>
 );
 

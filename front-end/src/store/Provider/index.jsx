@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import MainContext from '../Context';
-import loginApi from '../../Services/api';
+import { loginApi } from '../../Services/api';
 
 const MainProvider = ({ children }) => {
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [statusCode, setStatusCode] = useState(0);
 
+  console.log(name, email, password);
+  
   const userLoginApi = () => {
     loginApi(email, password).then((v) => setStatusCode(v));
   };
@@ -19,6 +22,8 @@ const MainProvider = ({ children }) => {
     setPassword,
     userLoginApi,
     statusCode,
+    name,
+    setName,
   };
 
   return (
