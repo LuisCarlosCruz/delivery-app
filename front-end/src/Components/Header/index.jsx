@@ -16,7 +16,7 @@ export default function Header({ page }) {
             PRODUTOS
           </NavLink>
           <NavLink
-            to="/customer/checkout"
+            to="/customer/orders"
             className="btn-orders"
             data-testid="customer_products__element-navbar-link-orders"
           >
