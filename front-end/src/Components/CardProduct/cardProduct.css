@@ -1,10 +1,10 @@
 img {
-  height: 300px;
+  height: 250px;
 }
 
 section {
   display: flex;
-  margin-bottom: 30px;
+  margin-bottom: 100px;
 }
 
 ul {
@@ -23,7 +23,7 @@ li {
   flex-direction: column;
   margin: 10px;
   padding-bottom: 1rem;
-  width: 300px;
+  width: 250px;
 }
 
 li button {
@@ -47,7 +47,7 @@ li input {
 .tag-price {
   background: rgba(242, 255, 252, 0.75);
   border-radius: 5px;
-  margin-right: 150px;
+  margin-right: 130px;
   margin-top: 25px;
   padding: 0 1rem;
   position: absolute;
