@@ -1,0 +1,11 @@
+.btn-cart {
+  background: #036b52;
+  border-radius: 10px;
+  color: #f2fffC;
+  margin-left: 75%;
+  margin-top: 40%;
+  position: fixed;
+  text-align: center;
+  text-decoration: none;
+  width: 300px;
+}
