@@ -20,7 +20,7 @@ const Admin = () => {
   const handlePassword = ({ target }) => setUser({ ...user, password: target.value });
   const handleRole = ({ target }) => setUser({ ...user, role: target.value });
 
-  const validateUser = (user) => {
+  const validateUser = () => {
     adminManageApi(user.name, user.email, user.password, user.role)
       .then((v) => setStatusCode(v));
   };
@@ -31,7 +31,7 @@ const Admin = () => {
         Nome
         <input
           type="text"
-          placeholder="email@trybeer.com.br"
+          placeholder="Jorginho da Silva"
           onChange={ handleName }
         />
       </label>

@@ -20,7 +20,7 @@ routes.post(
 );
 
 routes.post(
-  '/adminRegister',
+  '/admin/manage',
   validateEmail,
   validatePassword,
   validateName,
