@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import adminManageApi from '../../Services/api/adminApi';
+import COMPONENT from '../../Components';
+import './admin.css';
 
 const Admin = () => {
   const [user, setUser] = useState({
@@ -26,53 +28,63 @@ const Admin = () => {
   };
 
   return (
-    <form>
-      <label htmlFor="name">
-        Nome
-        <input
-          type="text"
-          placeholder="Jorginho da Silva"
-          onChange={ handleName }
-        />
-      </label>
-      <label htmlFor="email">
-        Email
-        <input
-          type="text"
-          placeholder="email@trybeer.com.br"
-          onChange={ handleEmail }
-        />
-      </label>
-      <label htmlFor="password">
-        Senha
-        <input
-          type="password"
-          placeholder="***********"
-          onChange={ handlePassword }
-        />
-      </label>
-      <select
-        onChange={ handleRole }
-      >
-        <option
-          value={ seller }
-        >
-          Vendedor
-        </option>
-        <option
-          value={ customer }
-        >
-          Cliente
-        </option>
-      </select>
-      <button
-        type="button"
-        onClick={ () => validateUser() }
-      >
-        CADASTRAR
-      </button>
-      <p>{statusCode === errorStatus && messageError}</p>
-    </form>
+    <div>
+      <COMPONENT.Header page="admin" />
+      <div className="form">
+        <form>
+          <label htmlFor="name">
+            Nome
+            <input
+              datatest-id="admin_manage__input-name"
+              type="text"
+              placeholder="Jorginho da Silva"
+              onChange={ handleName }
+            />
+          </label>
+          <label htmlFor="email">
+            Email
+            <input
+              datatest-id="admin_manage__input-email"
+              type="text"
+              placeholder="email@trybeer.com.br"
+              onChange={ handleEmail }
+            />
+          </label>
+          <label htmlFor="password">
+            Senha
+            <input
+              datatest-id="admin_manage__input-password"
+              type="password"
+              placeholder="***********"
+              onChange={ handlePassword }
+            />
+          </label>
+          <select
+            datatest-id="admin_manage__select-role"
+            onChange={ handleRole }
+          >
+            <option
+              value={ seller }
+            >
+              Vendedor
+            </option>
+            <option
+              value={ customer }
+            >
+              Cliente
+            </option>
+          </select>
+          <button
+            datatest-id="admin_manage__button-register"
+            type="button"
+            onClick={ () => validateUser() }
+          >
+            CADASTRAR
+          </button>
+          <p>{statusCode === errorStatus && messageError}</p>
+        </form>
+      </div>
+    </div>
   );
 };
 
