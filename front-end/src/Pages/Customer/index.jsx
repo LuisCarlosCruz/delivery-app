@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import COMPONENT from '../../Components';
+import { MainContext } from '../../store';
+import { getLocalStorage } from '../../utils/localStorage';
 
 const arrayTest = [
   { id: 1, name: 'Skol Lata 250ml', price: 2.20, url: '/images/skol_lata_350ml.jpg' },
@@ -41,15 +43,35 @@ const arrayTest = [
 ];
 
 export default function Customer() {
+  const { totalValue, setTotalValue } = useContext(MainContext);
+
+  useEffect(() => {
+    const cart = getLocalStorage('cartItems');
+
+    if (!cart) return setTotalValue(0);
+
+    const totalPrice = cart
+      .reduce((prevValue, currValue) => (
+        prevValue + (currValue.quantity * currValue.price)), 0);
+    return setTotalValue(totalPrice);
+  }, [setTotalValue]);
+
+  const formatPrice = (value) => {
+    let newPrice = value.toFixed(2);
+    newPrice = newPrice.replace('.', ',');
+    return newPrice;
+  };
+
   return (
     <>
-      <COMPONENT.Header />
+      <COMPONENT.Header page="customer" />
       <section>
         <ul>
           {arrayTest.map((data) => (
             <COMPONENT.CardProduct key={ data.id } data={ data } />
           ))}
         </ul>
+        <COMPONENT.ButtonCart totalValue={ formatPrice(totalValue) } />
       </section>
     </>
   );

@@ -1,26 +1,62 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Proptypes from 'prop-types';
+import { NavLink } from 'react-router-dom';
 import './header.css';
 
-export default function Header() {
-  return (
-    <nav className="navbar">
+export default function Header({ page }) {
+  const renderBtn = () => {
+    if (page === 'customer') {
+      return (
+        <div className="itens-left">
+          <NavLink
+            to="/customer/products"
+            className="btn-products"
+            data-testid="customer_products__element-navbar-link-products"
+          >
+            PRODUTOS
+          </NavLink>
+          <NavLink
+            to="/customer/orders"
+            className="btn-orders"
+            data-testid="customer_products__element-navbar-link-orders"
+          >
+            MEUS PEDIDOS
+          </NavLink>
+        </div>
+      );
+    }
+
+    if (page === 'seller') {
+      return (
+        <div className="itens-left">
+          <NavLink
+            to="/customer/products"
+            className="btn-orders"
+            data-testid="customer_products__element-navbar-link-orders"
+          >
+            PEDIDOS
+          </NavLink>
+        </div>
+      );
+    }
+    return (
       <div className="itens-left">
-        <Link
+        <NavLink
           to="/customer/products"
-          className="btn-products"
-          data-testid="customer_products__element-navbar-link-products"
-        >
-          PRODUTOS
-        </Link>
-        <Link
-          to="/customer/checkout"
           className="btn-orders"
           data-testid="customer_products__element-navbar-link-orders"
         >
-          MEUS PEDIDOS
-        </Link>
+          GERENCIAR USUÁRIOS
+        </NavLink>
       </div>
+    );
+  };
+
+  return (
+    <nav className="navbar">
+
+      {renderBtn()}
+
       <div className="itens-right">
         <div>
           <h1
@@ -40,3 +76,7 @@ export default function Header() {
     </nav>
   );
 }
+
+Header.propTypes = {
+  page: Proptypes.string.isRequired,
+};
