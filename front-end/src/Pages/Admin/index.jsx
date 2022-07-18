@@ -31,6 +31,7 @@ const Admin = () => {
     <div>
       <COMPONENT.Header page="admin" />
       <div className="form">
+        Cadastrar novo usuário
         <form>
           <label htmlFor="name">
             Nome
