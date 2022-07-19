@@ -16,7 +16,7 @@ const loginApi = async (email, password) => {
 const registerApi = async (name, email, password) => {
   const infoUser = { name, email, password };
   try {
-    await axios.post(`${URL_REGISTER}`, infoUser);
+    const resp = await axios.post(`${URL_REGISTER}`, infoUser);
     return resp.status;
   } catch (err) {
     return err.response.status;
