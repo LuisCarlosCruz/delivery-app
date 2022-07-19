@@ -21,7 +21,7 @@ const Register = () => {
   const emailValid = emailCheck.test(email);
   const limit = 6;
   const max = 12;
-  const btndisabled = emailValid && password.length >= limit && name.length <= max;
+  const btndisabled = emailValid && password.length >= limit && name.length >= max;
 
   const statusError = 400;
   const messageError = 'Email ou Senha Inválido';

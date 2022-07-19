@@ -43,6 +43,7 @@ const Login = () => {
       <button
         type="button"
         onClick={ () => handleRedirect() }
+        data-testid="common_login__button-register"
       >
         Ainda não tenho conta
       </button>
