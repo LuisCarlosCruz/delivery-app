@@ -1,14 +1,19 @@
-import React, { useContext } from 'react';
+import React, { useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { MainContext } from '../../store';
+import loginApi from '../../Services/api';
 
 const Login = () => {
+  const messageError = 'Email ou Senha Inválido';
+  const navigate = useNavigate();
+  const [boolMessage, setBoolMessage] = useState(false);
   const {
+    email,
     setEmail,
+    password,
     setPassword,
-    userLoginApi,
-    statusCode,
     validateLogin,
-    isDisabled } = useContext(MainContext);
+    isDisabledLogin } = useContext(MainContext);
 
   const handleEmail = ({ target }) => {
     setEmail(target.value);
@@ -19,8 +24,29 @@ const Login = () => {
     validateLogin();
   };
 
-  const messageError = 'Email ou Senha Inválido';
-  const statusError = 404;
+  const validStatus = (status) => {
+    if (status === undefined) {
+      setBoolMessage(true);
+    }
+  };
+
+  const validRole = (role) => {
+    if (role === 'customer') {
+      navigate('/customer/products');
+    } if (role === 'seller') {
+      navigate('/seller/orders');
+    } if (role === 'administrator') {
+      navigate('/admin/manage');
+    }
+  };
+
+  const LoginButton = async () => {
+    const response = await loginApi(email, password);
+    validStatus(response.status);
+    validRole(response.data.role);
+    localStorage.setItem('user', JSON.stringify(response.data));
+  };
+
   return (
     <form>
       <label htmlFor="email">
@@ -36,7 +62,7 @@ const Login = () => {
         Senha:
         <input
           data-testid="common_login__input-password"
-          type="password"
+          // type="password"
           placeholder="***********"
           onChange={ handlePassword }
         />
@@ -44,8 +70,8 @@ const Login = () => {
       <button
         data-testid="common_login__button-login"
         type="button"
-        onClick={ userLoginApi }
-        disabled={ isDisabled }
+        onClick={ LoginButton }
+        disabled={ isDisabledLogin }
       >
         LOGIN
       </button>
@@ -58,7 +84,7 @@ const Login = () => {
       <p
         data-testid="common_login__element-invalid-email"
       >
-        {statusError === statusCode && messageError}
+        {boolMessage && messageError}
       </p>
     </form>
   );
