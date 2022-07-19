@@ -7,10 +7,10 @@ import { MainContext } from '../../store';
 export default function CardProduct({ data }) {
   const { setTotalValue } = useContext(MainContext);
   const [counter, setCounter] = useState(0);
-  const { id, name, price, url } = data;
+  const { id, name, price } = data;
 
   const formatPrice = (value) => {
-    let newPrice = value.toFixed(2);
+    let newPrice = Number(value).toFixed(2);
     newPrice = newPrice.replace('.', ',');
     return newPrice;
   };
@@ -39,12 +39,13 @@ export default function CardProduct({ data }) {
 
   const setInitialCart = (items) => {
     const arrayCart = getLocalStorage('cartItems');
+    console.log(arrayCart);
     const arrayItems = [];
     if (!arrayCart) {
       arrayItems.push(items);
-      totalPrice();
-
       setLocalStorage('cartItems', arrayItems);
+
+      totalPrice();
     } else {
       setIncrementCart(arrayCart, items);
     }
@@ -92,7 +93,7 @@ export default function CardProduct({ data }) {
         { formatPrice(price) }
       </h2>
       <img
-        src={ url }
+        src={ data.url_image }
         alt="cerveja"
         data-testid={ `customer_products__img-card-bg-image-${id}` }
       />
@@ -135,8 +136,8 @@ export default function CardProduct({ data }) {
 CardProduct.propTypes = {
   data: PropTypes.shape({
     name: PropTypes.string,
-    price: PropTypes.number,
+    price: PropTypes.string,
     id: PropTypes.number,
-    url: PropTypes.string,
+    url_image: PropTypes.string,
   }).isRequired,
 };
