@@ -14,22 +14,26 @@ const Register = () => {
   } = useContext(MainContext);
 
   const handleName = ({ target }) => setName(target.value);
-
   const handleEmail = ({ target }) => setEmail(target.value);
-
   const handlePassword = ({ target }) => setPassword(target.value);
+
+  const emailCheck = /^[^\s@]+@[^\s@]+\.[^\s@]+$/g;
+  const emailValid = emailCheck.test(email);
+  const limit = 6;
+  const max = 12;
+  const btndisabled = emailValid && password.length >= limit && name.length <= max;
 
   const statusError = 400;
   const messageError = 'Email ou Senha Inválido';
 
   return (
     <form>
-      <label htmlFor="text">
+      <label htmlFor="text" title="name">
         Nome:
         <input
           type="text"
           placeholder="Seu nome"
-          onChange={ handleName }
+          onChange={ (e) => handleName(e) }
           data-testid="common_register__input-name"
         />
       </label>
@@ -37,8 +41,8 @@ const Register = () => {
         Email:
         <input
           type="text"
-          placeholder="email@trybeer.com.br"
-          onChange={ handleEmail }
+          placeholder="email@tryber.com.br"
+          onChange={ (e) => handleEmail(e) }
           data-testid="common_register__input-email"
         />
       </label>
@@ -47,7 +51,7 @@ const Register = () => {
         <input
           type="password"
           placeholder="***********"
-          onChange={ handlePassword }
+          onChange={ (e) => handlePassword(e) }
           data-testid="common_register__input-password"
         />
       </label>
@@ -55,6 +59,7 @@ const Register = () => {
         type="button"
         onClick={ () => registerApi(name, email, password) }
         data-testid="common_register__button-register"
+        disabled={ !btndisabled }
       >
         CADASTRAR
       </button>

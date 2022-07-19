@@ -9,8 +9,6 @@ const MainProvider = ({ children }) => {
   const [password, setPassword] = useState('');
   const [statusCode, setStatusCode] = useState(0);
 
-  console.log(name, email, password);
-  
   const userLoginApi = () => {
     loginApi(email, password).then((v) => setStatusCode(v));
   };
