@@ -29,6 +29,7 @@ const MainProvider = ({ children }) => {
     isDisabledLogin,
     setIsDisabledLogin,
     statusCode,
+    setStatusCode,
     totalValue,
     setTotalValue,
   };
