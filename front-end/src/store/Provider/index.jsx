@@ -7,7 +7,6 @@ const MainProvider = ({ children }) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [statusCode, setStatusCode] = useState(0);
   const [totalValue, setTotalValue] = useState(0);
 
   const userLoginApi = () => {
@@ -20,7 +19,6 @@ const MainProvider = ({ children }) => {
     password,
     setPassword,
     userLoginApi,
-    statusCode,
     totalValue,
     setTotalValue,
     name,
