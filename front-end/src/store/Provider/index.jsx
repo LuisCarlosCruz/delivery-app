@@ -6,6 +6,8 @@ const MainProvider = ({ children }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isDisabledLogin, setIsDisabledLogin] = useState(true);
+  const [statusCode, setStatusCode] = useState(0);
+  const [totalValue, setTotalValue] = useState(0);
 
   const validateLogin = () => {
     const minLength = 6;
@@ -26,6 +28,9 @@ const MainProvider = ({ children }) => {
     validateLogin,
     isDisabledLogin,
     setIsDisabledLogin,
+    statusCode,
+    totalValue,
+    setTotalValue,
   };
 
   return (
