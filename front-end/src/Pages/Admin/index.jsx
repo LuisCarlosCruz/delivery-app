@@ -36,7 +36,7 @@ const Admin = () => {
           <label htmlFor="name">
             Nome
             <input
-              datatest-id="admin_manage__input-name"
+              data-testid="admin_manage__input-name"
               type="text"
               placeholder="Jorginho da Silva"
               onChange={ handleName }
@@ -45,7 +45,7 @@ const Admin = () => {
           <label htmlFor="email">
             Email
             <input
-              datatest-id="admin_manage__input-email"
+              data-testid="admin_manage__input-email"
               type="text"
               placeholder="email@trybeer.com.br"
               onChange={ handleEmail }
@@ -54,14 +54,14 @@ const Admin = () => {
           <label htmlFor="password">
             Senha
             <input
-              datatest-id="admin_manage__input-password"
+              data-testid="admin_manage__input-password"
               type="password"
               placeholder="***********"
               onChange={ handlePassword }
             />
           </label>
           <select
-            datatest-id="admin_manage__select-role"
+            data-testid="admin_manage__select-role"
             onChange={ handleRole }
           >
             <option
@@ -76,7 +76,7 @@ const Admin = () => {
             </option>
           </select>
           <button
-            datatest-id="admin_manage__button-register"
+            data-testid="admin_manage__button-register"
             type="button"
             onClick={ () => validateUser() }
           >
