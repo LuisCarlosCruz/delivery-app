@@ -6,7 +6,7 @@ const loginApi = async (email, password) => {
   const infoUser = { email, password };
   try {
     const v = await axios.post(`${URL_LOGIN}`, infoUser);
-    return v.status;
+    return v;
   } catch (e) {
     return e.response.status;
   }
