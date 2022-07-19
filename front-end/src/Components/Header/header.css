@@ -37,7 +37,6 @@ button {
 
 .btn-products, .btn-orders {
   align-items: center;
-  background-color: rgba(47, 193, 140, 1);
   color: rgba(242, 255, 252, 1);
   display: flex;
   font-size: 21px;
@@ -57,6 +56,10 @@ button {
   background-color: rgba(66, 25, 129, 1);
   display: flex;
   height: 80px;
+}
+
+.active {
+  background-color: rgba(47, 193, 140, 1);
 }
 
 h1 {
