@@ -7,6 +7,19 @@ const MainProvider = ({ children }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [statusCode, setStatusCode] = useState(0);
+  const [isDisabled, setIsDisabled] = useState(true);
+
+  const validateLogin = () => {
+    const minLength = 6;
+    const emailValidate = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    console.log(password.length);
+    const boolValid = emailValidate.test(email) && password.length + 1 >= minLength;
+    if (boolValid) {
+      setIsDisabled(false);
+    } else {
+      setIsDisabled(true);
+    }
+  };
 
   const userLoginApi = () => {
     loginApi(email, password).then((v) => setStatusCode(v));
@@ -19,6 +32,8 @@ const MainProvider = ({ children }) => {
     setPassword,
     userLoginApi,
     statusCode,
+    isDisabled,
+    validateLogin,
   };
 
   return (
