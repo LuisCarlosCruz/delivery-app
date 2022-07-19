@@ -1,5 +1,8 @@
 const express = require('express');
+
 const userController = require('../controllers/userController');
+const productController = require('../controllers/productController');
+
 const { validateEmail, validatePassword, validateName } = require('../middlewares/userValidations');
 
 const routes = express.Router();
@@ -25,6 +28,11 @@ routes.post(
   validatePassword,
   validateName,
   userController.adminRegister,
+);
+
+routes.get(
+  '/products',
+  productController.getAllProducts,
 );
 
 module.exports = routes;

@@ -6,13 +6,9 @@ module.exports = (sequelize, DataTypes) => {
     url_image: DataTypes.STRING,
   },
   {
+    tableName: 'products',
     timestamps: false,
   });
-
-  products.associate = (models) => {
-    products.hasMany(models.sales,
-      { foreignKey: 'user_id', as: 'customer' });
-  };
 
   return products;
 };
