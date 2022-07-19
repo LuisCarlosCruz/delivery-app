@@ -37,7 +37,7 @@ const Register = () => {
           data-testid="common_register__input-name"
         />
       </label>
-      <label htmlFor="email">
+      <label htmlFor="email" title="email">
         Email:
         <input
           type="text"
@@ -46,7 +46,7 @@ const Register = () => {
           data-testid="common_register__input-email"
         />
       </label>
-      <label htmlFor="password">
+      <label htmlFor="password" title="password">
         Senha:
         <input
           type="password"
