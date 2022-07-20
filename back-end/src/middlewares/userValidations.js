@@ -36,9 +36,9 @@ function validateName(request, response, next) {
   if (name === undefined) {
     return response.status(404).json({ message: '"name" is required' });
   }
-  if (name.length > 12) {
+  if (name.length < 12) {
     return response.status(404).json({
-      message: '"name" length must be less than 12 characters long',
+      message: '"name" length must be at least 12 characters long',
     });
   }
   next();

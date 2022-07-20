@@ -8,6 +8,7 @@ const MainRoutes = () => (
     <Route path="/login" element={ <PAGES.Login /> } />
     <Route path="/customer/products" element={ <PAGES.Customer /> } />
     <Route path="/admin/manage" element={ <PAGES.Admin /> } />
+    <Route path="/register" element={ <PAGES.Register /> } />
   </Routes>
 );
 

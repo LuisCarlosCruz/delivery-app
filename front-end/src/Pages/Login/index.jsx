@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { MainContext } from '../../store';
-import loginApi from '../../Services/api';
+import { loginApi } from '../../Services/api';
 
 const Login = () => {
   const messageError = 'Email ou Senha Inválido';
@@ -47,6 +47,11 @@ const Login = () => {
     localStorage.setItem('user', JSON.stringify(response.data));
   };
 
+  const handleRegister = () => {
+    const path = '/register';
+    navigate(path);
+  };
+
   return (
     <form>
       <label htmlFor="email">
@@ -62,7 +67,7 @@ const Login = () => {
         Senha:
         <input
           data-testid="common_login__input-password"
-          // type="password"
+          type="password"
           placeholder="***********"
           onChange={ handlePassword }
         />
@@ -76,8 +81,9 @@ const Login = () => {
         LOGIN
       </button>
       <button
-        data-testid="common_login__button-register"
         type="button"
+        data-testid="common_login__button-register"
+        onClick={ handleRegister }
       >
         Ainda não tenho conta
       </button>

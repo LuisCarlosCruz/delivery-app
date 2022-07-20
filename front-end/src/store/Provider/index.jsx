@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import MainContext from '../Context';
 
 const MainProvider = ({ children }) => {
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isDisabledLogin, setIsDisabledLogin] = useState(true);
-  const [statusCode, setStatusCode] = useState(0);
   const [totalValue, setTotalValue] = useState(0);
 
   const validateLogin = () => {
@@ -28,10 +28,12 @@ const MainProvider = ({ children }) => {
     validateLogin,
     isDisabledLogin,
     setIsDisabledLogin,
-    statusCode,
-    setStatusCode,
     totalValue,
     setTotalValue,
+    name,
+    setName,
+    // statusCode,
+    // setStatusCode,
   };
 
   return (
