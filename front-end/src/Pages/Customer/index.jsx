@@ -5,8 +5,14 @@ import { MainContext } from '../../store';
 import { getLocalStorage } from '../../utils/localStorage';
 
 export default function Customer() {
-  const { totalValue, setTotalValue } = useContext(MainContext);
+  const { setTotalValue } = useContext(MainContext);
   const [data, setData] = useState([]);
+
+  const formatPrice = (value) => {
+    let newPrice = Number(value).toFixed(2);
+    newPrice = newPrice.replace('.', ',');
+    return newPrice;
+  };
 
   useEffect(() => {
     const cart = getLocalStorage('cartItems');
@@ -16,7 +22,7 @@ export default function Customer() {
     const totalPrice = cart
       .reduce((prevValue, currValue) => (
         prevValue + (currValue.quantity * currValue.price)), 0);
-    return setTotalValue(totalPrice);
+    return setTotalValue(formatPrice(totalPrice));
   }, [setTotalValue]);
 
   useEffect(() => {
@@ -27,14 +33,6 @@ export default function Customer() {
     getProducts();
   }, []);
 
-  const formatPrice = (value) => {
-    let newPrice = Number(value).toFixed(2);
-    newPrice = newPrice.replace('.', ',');
-    return newPrice;
-  };
-
-  console.log(data);
-
   return (
     <>
       <COMPONENT.Header page="customer" />
@@ -44,7 +42,7 @@ export default function Customer() {
             <COMPONENT.CardProduct key={ product.id } data={ product } />
           ))}
         </ul>
-        <COMPONENT.ButtonCart totalValue={ formatPrice(totalValue) } />
+        <COMPONENT.ButtonCart />
       </section>
     </>
   );

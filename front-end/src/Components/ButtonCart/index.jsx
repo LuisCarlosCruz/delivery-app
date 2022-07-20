@@ -1,24 +1,31 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './buttonCart.css';
-import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { MainContext } from '../../store';
 
-export default function ButtonCart({ totalValue }) {
+export default function ButtonCart() {
+  const { totalValue, disableButtonCart } = useContext(MainContext);
+  const navigate = useNavigate();
+
+  console.log(totalValue);
+
+  const redirect = () => {
+    navigate('/customer/checkout');
+  };
+
   return (
-    <Link
-      to="/customer/checkout"
+    <button
+      type="button"
+      onClick={ redirect }
       className="btn-cart"
       data-testid="customer_products__button-cart"
+      disabled={ disableButtonCart }
     >
-      <h2>
+      <h2 data-testid="customer_products__checkout-bottom-value">
         Ver Carrinho: R$
         {' '}
         { totalValue }
       </h2>
-    </Link>
+    </button>
   );
 }
-
-ButtonCart.propTypes = {
-  totalValue: PropTypes.string.isRequired,
-};

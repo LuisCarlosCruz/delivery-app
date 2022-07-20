@@ -5,7 +5,7 @@ import { getLocalStorage, setLocalStorage } from '../../utils/localStorage';
 import { MainContext } from '../../store';
 
 export default function CardProduct({ data }) {
-  const { setTotalValue } = useContext(MainContext);
+  const { setTotalValue, setDisableButtonCart } = useContext(MainContext);
   const [counter, setCounter] = useState(0);
   const { id, name, price } = data;
 
@@ -20,7 +20,10 @@ export default function CardProduct({ data }) {
     const total = cart
       .reduce((prevValue, currValue) => (
         prevValue + (currValue.quantity * currValue.price)), 0);
-    setTotalValue(total);
+    setTotalValue(formatPrice(total));
+
+    if (total !== 0) setDisableButtonCart(false);
+    if (total === 0) setDisableButtonCart(true);
   };
 
   const setIncrementCart = (array, items) => {
