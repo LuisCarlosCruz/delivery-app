@@ -1,10 +1,10 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { registerApi } from '../../Services/api';
 import { MainContext } from '../../store';
 
 const Register = () => {
   const {
-    statusCode,
     email,
     setEmail,
     password,
@@ -13,18 +13,36 @@ const Register = () => {
     setName,
   } = useContext(MainContext);
 
+  const [statusCode, setStatusCode] = useState(null);
+
+  const statusCreate = 201;
+  const statusConflict = 409;
+  const messageError = 'Email ou Senha Inválido';
+
   const handleName = ({ target }) => setName(target.value);
   const handleEmail = ({ target }) => setEmail(target.value);
   const handlePassword = ({ target }) => setPassword(target.value);
 
+  const navigate = useNavigate();
+
+  const handleSubmit = async (event) => {
+    const responseAPI = await registerApi(name, email, password);
+    if (responseAPI !== statusCreate) setStatusCode(responseAPI);
+
+    // verificar se o nome ou email ja existe
+    if (responseAPI === statusConflict) {
+      event.preventDefault();
+      setStatusCode(responseAPI);
+    } else {
+      navigate('/customer/products');
+    }
+  };
+
   const emailCheck = /^[^\s@]+@[^\s@]+\.[^\s@]+$/g;
   const emailValid = emailCheck.test(email);
   const limit = 6;
-  const max = 12;
-  const btndisabled = emailValid && password.length >= limit && name.length >= max;
-
-  const statusError = 400;
-  const messageError = 'Email ou Senha Inválido';
+  const max = 11;
+  const btndisabled = emailValid && password.length >= limit && name.length > max;
 
   return (
     <form>
@@ -57,7 +75,7 @@ const Register = () => {
       </label>
       <button
         type="button"
-        onClick={ () => registerApi(name, email, password) }
+        onClick={ (e) => handleSubmit(e) }
         data-testid="common_register__button-register"
         disabled={ !btndisabled }
       >
@@ -66,7 +84,7 @@ const Register = () => {
       <p
         data-testid="common_register__element-invalid_register"
       >
-        {statusCode === statusError && messageError}
+        { statusCode && messageError }
       </p>
     </form>
   );

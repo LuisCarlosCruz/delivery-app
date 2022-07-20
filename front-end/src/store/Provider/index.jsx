@@ -32,6 +32,8 @@ const MainProvider = ({ children }) => {
     setTotalValue,
     name,
     setName,
+    // statusCode,
+    // setStatusCode,
   };
 
   return (
