@@ -26,7 +26,7 @@ const Admin = () => {
   const MIN_NAME = 12;
   const validEmail = /\S+@\S+\.\S+/;
   const disableButton = validEmail.test(user.email)
-    && user.password.length > MIN_PASSWORD
+    && user.password.length >= MIN_PASSWORD
     && user.name.length > MIN_NAME
     && user.role !== undefined;
 
@@ -68,21 +68,24 @@ const Admin = () => {
               onChange={ handlePassword }
             />
           </label>
-          <select
-            data-testid="admin_manage__select-role"
-            onChange={ handleRole }
-          >
-            <option
-              value={ seller }
+          <label htmlFor="role">
+            Tipo
+            <select
+              data-testid="admin_manage__select-role"
+              onChange={ handleRole }
             >
-              Vendedor
-            </option>
-            <option
-              value={ customer }
-            >
-              Cliente
-            </option>
-          </select>
+              <option
+                value={ seller }
+              >
+                Vendedor
+              </option>
+              <option
+                value={ customer }
+              >
+                Cliente
+              </option>
+            </select>
+          </label>
           <button
             data-testid="admin_manage__button-register"
             type="button"

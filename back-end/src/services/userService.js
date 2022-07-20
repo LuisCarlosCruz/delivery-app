@@ -15,7 +15,7 @@ async function login(email, password) {
     name: user.name,
     email: user.email,
     role: user.role,
-    token: generateToken({ id: user.id }),
+    token: generateToken({ id: user.id, role: user.role }),
   };
 }
 
@@ -35,7 +35,7 @@ async function register(name, email, password, role = 'customer') {
     name: user.name,
     email: user.email,
     role: user.role,
-    token: generateToken({ id: user.id }),
+    token: generateToken({ id: user.id, role: user.role }),
   };
 }
 
@@ -54,7 +54,7 @@ async function adminRegister(body) {
     name: user.name,
     email: user.email,
     role: user.role,
-    token: generateToken({ id: user.id }),
+    token: generateToken({ id: user.id, role: user.role }),
   };
 }
 
