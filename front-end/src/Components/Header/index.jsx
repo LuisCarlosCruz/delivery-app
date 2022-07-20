@@ -1,9 +1,17 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Proptypes from 'prop-types';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import './header.css';
 
 export default function Header({ page }) {
+  const [user, setUser] = useState({});
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const userInfo = localStorage.getItem('user');
+    setUser(JSON.parse(userInfo));
+  }, []);
+
   const renderBtn = () => {
     if (page === 'customer') {
       return (
@@ -52,6 +60,12 @@ export default function Header({ page }) {
     );
   };
 
+  const logout = () => {
+    localStorage.removeItem('user');
+    localStorage.removeItem('cartItems');
+    navigate('/login');
+  };
+
   return (
     <nav className="navbar">
 
@@ -62,13 +76,14 @@ export default function Header({ page }) {
           <h1
             data-testid="customer_products__element-navbar-user-full-name"
           >
-            Cicrano da Silva
+            {user.name}
           </h1>
         </div>
         <button
           className="btn-logout"
           type="button"
           data-testid="customer_products__element-navbar-link-logout"
+          onClick={ logout }
         >
           Sair
         </button>
