@@ -22,6 +22,14 @@ const Admin = () => {
   const handlePassword = ({ target }) => setUser({ ...user, password: target.value });
   const handleRole = ({ target }) => setUser({ ...user, role: target.value });
 
+  const MIN_PASSWORD = 6;
+  const MIN_NAME = 12;
+  const validEmail = /\S+@\S+\.\S+/;
+  const disableButton = validEmail.test(user.email)
+    && user.password.length > MIN_PASSWORD
+    && user.name.length > MIN_NAME
+    && user.role !== undefined;
+
   const validateUser = () => {
     adminManageApi(user.name, user.email, user.password, user.role)
       .then((v) => setStatusCode(v));
@@ -78,11 +86,16 @@ const Admin = () => {
           <button
             data-testid="admin_manage__button-register"
             type="button"
+            disabled={ !disableButton }
             onClick={ () => validateUser() }
           >
             CADASTRAR
           </button>
-          <p>{statusCode === errorStatus && messageError}</p>
+          <p
+            data-testid="admin_manage__element-invalid-register"
+          >
+            {statusCode === errorStatus && messageError}
+          </p>
         </form>
       </div>
     </div>

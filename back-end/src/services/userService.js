@@ -40,11 +40,11 @@ async function register(name, email, password, role = 'customer') {
 }
 
 async function adminRegister(body) {
-  const { name, email, password, role, userRole } = body;
+  const { name, email, password, role } = body;
   const passwordHash = cryptHashMd5(password);
-  if (userRole !== 'admin') {
-    throw new Error('You are not an admin');
-  }
+  // if (userRole !== 'admin') {
+  //   throw new Error('You are not an admin');
+  // }
   const userExists = await users.findOne({ where: { email } });
   if (userExists) {
     throw new Error('User already exists');
