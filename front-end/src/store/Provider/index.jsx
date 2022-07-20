@@ -7,6 +7,8 @@ const MainProvider = ({ children }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isDisabledLogin, setIsDisabledLogin] = useState(true);
+  const [disableButtonCart, setDisableButtonCart] = useState(true);
+  const [statusCode, setStatusCode] = useState(0);
   const [totalValue, setTotalValue] = useState(0);
 
   const validateLogin = () => {
@@ -28,6 +30,10 @@ const MainProvider = ({ children }) => {
     validateLogin,
     isDisabledLogin,
     setIsDisabledLogin,
+    disableButtonCart,
+    setDisableButtonCart,
+    statusCode,
+    setStatusCode,
     totalValue,
     setTotalValue,
     name,
