@@ -1,0 +1,47 @@
+.table-checkout {
+  margin: 0;
+}
+
+h1 {
+  padding-top: 100px;
+}
+
+.section-table {
+  display: flex;
+  flex-direction: column;
+}
+
+.section-table, .section-submit-order {
+  margin-bottom: 30px;
+}
+
+.section-submit-order h2 {
+  margin-bottom: 30px;
+}
+
+.section-submit-order {
+  display: flex;
+  flex-direction: column;
+}
+
+.section-submit-order label {
+  display: flex;
+  flex-direction: column;
+}
+
+.submit-input {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.submit-button {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.name-total, .name-submit {
+  margin: 0;
+  padding: 0 20px;
+}
