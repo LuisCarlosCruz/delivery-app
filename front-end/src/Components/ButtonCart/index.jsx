@@ -7,8 +7,6 @@ export default function ButtonCart() {
   const { totalValue, disableButtonCart } = useContext(MainContext);
   const navigate = useNavigate();
 
-  console.log(totalValue);
-
   const redirect = () => {
     navigate('/customer/checkout');
   };
