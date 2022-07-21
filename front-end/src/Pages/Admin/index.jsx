@@ -68,24 +68,22 @@ const Admin = () => {
               onChange={ handlePassword }
             />
           </label>
-          <label htmlFor="role">
-            Tipo
-            <select
-              data-testid="admin_manage__select-role"
-              onChange={ handleRole }
+          Tipo
+          <select
+            data-testid="admin_manage__select-role"
+            onChange={ handleRole }
+          >
+            <option
+              value={ seller }
             >
-              <option
-                value={ seller }
-              >
-                Vendedor
-              </option>
-              <option
-                value={ customer }
-              >
-                Cliente
-              </option>
-            </select>
-          </label>
+              Vendedor
+            </option>
+            <option
+              value={ customer }
+            >
+              Cliente
+            </option>
+          </select>
           <button
             data-testid="admin_manage__button-register"
             type="button"

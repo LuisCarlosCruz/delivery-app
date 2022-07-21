@@ -4,7 +4,6 @@ const userController = require('../controllers/userController');
 const productController = require('../controllers/productController');
 
 const { validateEmail, validatePassword, validateName } = require('../middlewares/userValidations');
-const { adminValidateMiddleware } = require('../middlewares/adminValidateMiddleware');
 
 const routes = express.Router();
 
@@ -25,7 +24,6 @@ routes.post(
 
 routes.post(
   '/admin/manage',
-  adminValidateMiddleware,
   validateEmail,
   validatePassword,
   validateName,

@@ -22,7 +22,8 @@ async function register(request, response) {
 
 async function adminRegister(request, response) {
   try {
-    const user = await userService.adminRegister(request.body);
+    const token = request.headers.authorization;
+    const user = await userService.adminRegister(request.body, token);
     response.status(201).json(user);
   } catch (error) {
     response.status(409).json({ message: error.message });
