@@ -31,7 +31,9 @@ const Admin = () => {
     && user.role !== undefined;
 
   const validateUser = () => {
-    adminManageApi(user.name, user.email, user.password, user.role)
+    const localstorage = localStorage.getItem('user');
+    const { token } = JSON.parse(localstorage);
+    adminManageApi('/admin/register', user, token)
       .then((v) => setStatusCode(v));
   };
 

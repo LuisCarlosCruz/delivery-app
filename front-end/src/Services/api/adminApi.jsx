@@ -1,14 +1,17 @@
-const axios = require('axios').default;
+import axios from 'axios';
 
-const URL_LOGIN = 'http://localhost:3001/admin/manage';
+const api = axios.create({ baseURL: 'http://localhost:3001' });
 
-const adminManageApi = async (name, email, password, role) => {
-  const infoNewUser = { name, email, password, role };
+const adminManageApi = async (url, body, token) => {
   try {
-    const v = await axios.post(`${URL_LOGIN}`, infoNewUser);
-    return v.status;
-  } catch (e) {
-    return e.response.status;
+    const response = await api.post(url, body, {
+      headers: {
+        Authorization: `${token}`,
+      },
+    });
+    return response;
+  } catch (error) {
+    return error.response;
   }
 };
 
