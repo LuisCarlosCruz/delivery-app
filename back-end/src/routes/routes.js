@@ -36,6 +36,6 @@ routes.get(
   productController.getAllProducts,
 );
 
-routes.post('/selles', salesController.createSalesController);
+routes.post('/sales', salesController.createSalesController);
 
 module.exports = routes;
