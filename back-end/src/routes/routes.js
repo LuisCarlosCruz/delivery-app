@@ -38,5 +38,6 @@ routes.get(
 
 routes.post('/sales', salesController.createSalesController);
 routes.get('/sales', salesController.getAllSalesController);
+routes.get('/sales/:id', salesController.getSalesByIdController);
 
 module.exports = routes;
