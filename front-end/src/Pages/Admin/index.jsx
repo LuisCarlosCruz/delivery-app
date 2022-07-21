@@ -33,7 +33,7 @@ const Admin = () => {
   const validateUser = () => {
     const localstorage = localStorage.getItem('user');
     const { token } = JSON.parse(localstorage);
-    adminManageApi('/admin/register', user, token)
+    adminManageApi(user, token)
       .then((v) => setStatusCode(v));
   };
 
