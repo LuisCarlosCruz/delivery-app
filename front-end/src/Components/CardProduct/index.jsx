@@ -42,7 +42,6 @@ export default function CardProduct({ data }) {
 
   const setInitialCart = (items) => {
     const arrayCart = getLocalStorage('cartItems');
-    console.log(arrayCart);
     const arrayItems = [];
     if (!arrayCart) {
       arrayItems.push(items);
