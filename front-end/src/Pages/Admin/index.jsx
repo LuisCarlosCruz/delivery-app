@@ -26,12 +26,14 @@ const Admin = () => {
   const MIN_NAME = 12;
   const validEmail = /\S+@\S+\.\S+/;
   const disableButton = validEmail.test(user.email)
-    && user.password.length > MIN_PASSWORD
+    && user.password.length >= MIN_PASSWORD
     && user.name.length > MIN_NAME
     && user.role !== undefined;
 
   const validateUser = () => {
-    adminManageApi(user.name, user.email, user.password, user.role)
+    const localstorage = localStorage.getItem('user');
+    const { token } = JSON.parse(localstorage);
+    adminManageApi(user, token)
       .then((v) => setStatusCode(v));
   };
 
@@ -68,6 +70,7 @@ const Admin = () => {
               onChange={ handlePassword }
             />
           </label>
+          Tipo
           <select
             data-testid="admin_manage__select-role"
             onChange={ handleRole }
