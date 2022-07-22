@@ -1,4 +1,4 @@
-const { generateToken } = require('../token/token');
+const { generateToken, verifyToken } = require('../token/token');
 const { users } = require('../database/models/index');
 const { cryptHashMd5 } = require('../utils/md5');
 
@@ -11,11 +11,12 @@ async function login(email, password) {
   if (user.password !== passwordHash) {
     throw new Error('Invalid password');
   }
+
   return {
     name: user.name,
     email: user.email,
     role: user.role,
-    token: generateToken({ id: user.id }),
+    token: generateToken({ email: user.email, id: user.id, role: user.role }),
   };
 }
 
@@ -35,16 +36,16 @@ async function register(name, email, password, role = 'customer') {
     name: user.name,
     email: user.email,
     role: user.role,
-    token: generateToken({ id: user.id }),
+    token: generateToken({ id: user.id, role: user.role }),
   };
 }
 
-async function adminRegister(body) {
-  const { name, email, password, role } = body;
+async function adminRegister({ name, email, password, role }, token) {
+  const decodedToken = verifyToken(token);
+  if (decodedToken.role !== 'administrator') {
+    throw new Error('You are not an admin');
+  }
   const passwordHash = cryptHashMd5(password);
-  // if (userRole !== 'admin') {
-  //   throw new Error('You are not an admin');
-  // }
   const userExists = await users.findOne({ where: { email } });
   if (userExists) {
     throw new Error('User already exists');
@@ -54,7 +55,6 @@ async function adminRegister(body) {
     name: user.name,
     email: user.email,
     role: user.role,
-    token: generateToken({ id: user.id }),
   };
 }
 
