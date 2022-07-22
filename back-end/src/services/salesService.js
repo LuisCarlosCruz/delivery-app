@@ -1,13 +1,25 @@
 const { Op } = require('sequelize');
 const { sales, salesProducts, users, products } = require('../database/models');
 
+async function getId(name) {
+  const { dataValues: { id } } = await users.findOne({
+    where: { name },
+  });
+  return id;
+}
+
 async function createSales(body) {
   const {
-    totalPrice, deliveryAddress, status, deliveryNumber, userId, sellerId, productsSale } = body;
+    totalPrice, deliveryAddress, status, deliveryNumber, customerName, sellerName, productsSale,
+  } = body;
+  const userId = await getId(customerName);
+  const sellerId = await getId(sellerName);
+
   const sale = await sales.create({
-    totalPrice, deliveryAddress, deliveryNumber, status, userId, sellerId, productsSale });
-  await Promise.all(
-    productsSale.map(async (product) => {
+    totalPrice, deliveryAddress, deliveryNumber, status, userId, sellerId,
+  });
+  
+  await Promise.all(productsSale.map(async (product) => {
       const { id, quantity } = product;
       const productSale = await salesProducts.create({
         saleId: sale.dataValues.id,
@@ -15,8 +27,7 @@ async function createSales(body) {
         quantity,
       });
       return productSale;
-    }),
-  );
+    }));
   return sale.dataValues;
 }
 
