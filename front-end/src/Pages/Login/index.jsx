@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { MainContext } from '../../store';
-import { loginApi } from '../../Services/api';
+import { loginApi } from '../../Services/api/loginApi';
 
 const Login = () => {
   const messageError = 'Email ou Senha Inválido';
