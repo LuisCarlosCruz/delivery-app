@@ -6,11 +6,14 @@ import { getLocalStorage, setLocalStorage } from '../../utils/localStorage';
 
 export default function Table({ data }) {
   const [items, setItems] = useState([]);
-  const { setTotalValue, setDisableButtonCart } = useContext(MainContext);
+  const {
+    setTotalValue, setDisableButtonCart, setSubmitItems,
+  } = useContext(MainContext);
 
   useEffect(() => {
     setItems(data);
-  }, [data]);
+    setSubmitItems(data);
+  }, [data, setSubmitItems]);
 
   const formatPrice = (value) => {
     let newPrice = Number(value).toFixed(2);
@@ -40,6 +43,7 @@ export default function Table({ data }) {
     const newCart = cart.filter((item) => item.id !== id);
     setLocalStorage('cartItems', newCart);
     setItems(newCart);
+    setSubmitItems(newCart);
     totalPrice();
   };
 
