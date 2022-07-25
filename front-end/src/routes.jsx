@@ -7,7 +7,8 @@ const MainRoutes = () => (
     <Route path="/" element={ <Navigate replace to="/login" /> } />
     <Route path="/login" element={ <PAGES.Login /> } />
     <Route path="/customer/products" element={ <PAGES.Customer /> } />
-    <Route path="/customer/orders" element={ <PAGES.Order /> } />
+    <Route path="/customer/orders/" element={ <PAGES.Order /> } />
+    <Route path="/customer/orders/:id" element={ <h1>detalhe do pedido</h1> } />
     <Route path="/customer/checkout" element={ <PAGES.Checkout /> } />
     <Route path="/admin/manage" element={ <PAGES.Admin /> } />
     <Route path="/register" element={ <PAGES.Register /> } />
