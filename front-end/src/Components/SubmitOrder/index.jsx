@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import MainContext from '../../store/Context';
 import { getLocalStorage } from '../../utils/localStorage';
-import createSales from '../../Services/api/saleApi';
+import { createSales } from '../../Services/api/saleApi';
 
 export default function SubmitOrder() {
   const [seller, setSeller] = useState('');
