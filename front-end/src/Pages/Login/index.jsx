@@ -1,7 +1,8 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { MainContext } from '../../store';
-import { loginApi } from '../../Services/api';
+import { loginApi } from '../../Services/api/loginApi';
+import { getLocalStorage } from '../../utils/localStorage';
 
 const Login = () => {
   const messageError = 'Email ou Senha Inválido';
@@ -14,6 +15,15 @@ const Login = () => {
     setPassword,
     validateLogin,
     isDisabledLogin } = useContext(MainContext);
+
+  useEffect(() => {
+    const infoUser = getLocalStorage('user');
+    if (!infoUser || infoUser.length < 1) {
+      navigate('/login');
+    } else {
+      navigate('/customer/products');
+    }
+  }, [navigate]);
 
   const handleEmail = ({ target }) => {
     setEmail(target.value);

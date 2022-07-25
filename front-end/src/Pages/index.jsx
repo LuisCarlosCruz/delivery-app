@@ -2,6 +2,7 @@ import Login from './Login';
 import Customer from './Customer';
 import Admin from './Admin';
 import Register from './Register';
+import Order from './Order';
 import Checkout from './Checkout';
 
 const PAGES = {
@@ -9,6 +10,7 @@ const PAGES = {
   Register,
   Customer,
   Admin,
+  Order,
   Checkout,
 };
 

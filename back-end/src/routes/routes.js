@@ -38,9 +38,9 @@ routes.get(
   productController.getAllProducts,
 );
 
+routes.post('/sales', salesController.createSalesController);
+routes.post('/sales/orders', salesController.getAllSalesController);
 routes.post('/sales', validateToken, salesController.createSalesController);
-
-routes.get('/sales', salesController.getAllSalesController);
 routes.get('/sales/:id', salesController.getSalesByIdController);
 
 module.exports = routes;
