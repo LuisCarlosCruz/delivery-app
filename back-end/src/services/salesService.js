@@ -10,10 +10,9 @@ async function getId(name) {
 
 async function createSales(body) {
   const {
-    totalPrice, deliveryAddress, status, deliveryNumber, customerName, sellerName, productsSale,
+    totalPrice, deliveryAddress, status, deliveryNumber, customerName, sellerId, productsSale,
   } = body;
   const userId = await getId(customerName);
-  const sellerId = await getId(sellerName);
 
   const sale = await sales.create({
     totalPrice, deliveryAddress, deliveryNumber, status, userId, sellerId,

@@ -10,6 +10,7 @@ const MainProvider = ({ children }) => {
   const [disableButtonCart, setDisableButtonCart] = useState(true);
   const [statusCode, setStatusCode] = useState(0);
   const [totalValue, setTotalValue] = useState(0);
+  const [submitItems, setSubmitItems] = useState([]);
 
   const validateLogin = () => {
     const minLength = 6;
@@ -38,6 +39,8 @@ const MainProvider = ({ children }) => {
     setTotalValue,
     name,
     setName,
+    submitItems,
+    setSubmitItems,
     // statusCode,
     // setStatusCode,
   };
