@@ -11,7 +11,7 @@
 }
 
 .input {
-  border-color:rgba(3, 107, 82, 1);
+  border-color: rgba(3, 107, 82, 1);
   border-radius: 7px;
   border-width: 3px;
   height: 30px;
@@ -33,7 +33,7 @@
 .button {
   background-color: rgba(3, 107, 82, 1);
   border-radius: 8px;
-  color:#f1f1f1;
+  color: rgb(241, 241, 241)1;
   margin-left: 30px;
 }
 
