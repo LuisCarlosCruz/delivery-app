@@ -41,39 +41,45 @@ const Admin = () => {
     <div>
       <COMPONENT.Header page="admin" />
       <div className="form">
-        Cadastrar novo usuário
+        <h2>Cadastrar novo usuário</h2>
+        <br />
         <form>
-          <label htmlFor="name">
+          <label htmlFor="name" className="legenda">
+            <br />
             Nome
             <input
               data-testid="admin_manage__input-name"
               type="text"
               placeholder="Jorginho da Silva"
               onChange={ handleName }
+              className="input"
             />
           </label>
-          <label htmlFor="email">
+          <label htmlFor="email" className="legenda">
             Email
             <input
               data-testid="admin_manage__input-email"
               type="text"
               placeholder="email@trybeer.com.br"
               onChange={ handleEmail }
+              className="input"
             />
           </label>
-          <label htmlFor="password">
+          <label htmlFor="password" className="legenda">
             Senha
             <input
               data-testid="admin_manage__input-password"
               type="password"
               placeholder="***********"
               onChange={ handlePassword }
+              className="input"
             />
           </label>
           Tipo
           <select
             data-testid="admin_manage__select-role"
             onChange={ handleRole }
+            className="select"
           >
             <option
               value={ seller }
@@ -87,6 +93,7 @@ const Admin = () => {
             </option>
           </select>
           <button
+            className="button"
             data-testid="admin_manage__button-register"
             type="button"
             disabled={ !disableButton }
