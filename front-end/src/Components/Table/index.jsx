@@ -4,7 +4,7 @@ import './table.css';
 import { MainContext } from '../../store';
 import { getLocalStorage, setLocalStorage } from '../../utils/localStorage';
 
-export default function Table({ data }) {
+export default function Table({ data, removeButton = true }) {
   const [items, setItems] = useState([]);
   const {
     setTotalValue, setDisableButtonCart, setSubmitItems,
@@ -39,7 +39,6 @@ export default function Table({ data }) {
 
   const removeItem = (id) => {
     const cart = getLocalStorage('cartItems');
-    console.log(cart);
     const newCart = cart.filter((item) => item.id !== id);
     setLocalStorage('cartItems', newCart);
     setItems(newCart);
@@ -58,7 +57,9 @@ export default function Table({ data }) {
           <th>Quantidade</th>
           <th>Valor Unitário</th>
           <th>Subtotal</th>
-          <th>Remover</th>
+          {
+            removeButton && <th>Remover</th>
+          }
         </tr>
         {items.length > 0 && items.map((item, index) => (
           <tr key={ item.id }>
@@ -77,7 +78,7 @@ export default function Table({ data }) {
             <td
               data-testid={ `customer_checkout__element-order-table-quantity-${index}` }
             >
-              {item.quantity}
+              {!removeButton ? item.salesProducts.quantity : item.quantity}
 
             </td>
             <td
@@ -89,19 +90,22 @@ export default function Table({ data }) {
             <td
               data-testid={ `customer_checkout__element-order-table-sub-total-${index}` }
             >
-              {subtotal(item.price, item.quantity)}
+              { !removeButton ? subtotal(item
+                .price, item.salesProducts.quantity) : subtotal(item
+                .price, item.quantity)}
 
             </td>
-            <td
-              data-testid={ `customer_checkout__element-order-table-remove-${index}` }
-            >
-              <button
-                type="button"
-                onClick={ () => removeItem(item.id) }
-              >
-                Remover
-              </button>
-            </td>
+            {
+              removeButton && (
+                <td
+                  data-testid={ `customer_checkout__element-order-table-remove-${index}` }
+                >
+                  <button type="button" onClick={ () => removeItem(item.id) }>
+                    Remover
+                  </button>
+                </td>
+              )
+            }
           </tr>
         ))}
       </tbody>
@@ -118,4 +122,9 @@ Table.propTypes = {
       quantity: PropTypes.number,
     }),
   ).isRequired,
+  removeButton: PropTypes.bool,
+};
+
+Table.defaultProps = {
+  removeButton: true,
 };
