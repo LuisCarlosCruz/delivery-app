@@ -2,6 +2,7 @@ const {
   createSales,
   getAllSales,
   getSalesById,
+  changeStatus,
 } = require('../services/salesService');
 
 async function createSalesController(req, res) {
@@ -33,8 +34,19 @@ async function getSalesByIdController(req, res) {
   }
 }
 
+async function changeStatusController(req, res) {
+  try {
+    const { id, status } = req.body;
+    const sale = await changeStatus(id, status);
+    res.status(200).json(sale);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+}
+
 module.exports = {
   createSalesController,
   getAllSalesController,
   getSalesByIdController,
+  changeStatusController,
 };
