@@ -2,7 +2,7 @@ const { Op } = require('sequelize');
 const { sales, salesProducts, users, products } = require('../database/models');
 
 async function getId(name) {
-  const { dataValues: { id } } = await users.findOne({
+  const { id } = await users.findOne({
     where: { name },
   });
   return id;
@@ -21,13 +21,13 @@ async function createSales(body) {
   await Promise.all(productsSale.map(async (product) => {
       const { id, quantity } = product;
       const productSale = await salesProducts.create({
-        saleId: sale.dataValues.id,
+        saleId: sale.id,
         productId: id,
         quantity,
       });
       return productSale;
     }));
-  return sale.dataValues;
+  return sale;
 }
 
 async function getAllSales(email) {
@@ -44,15 +44,23 @@ async function getSalesById(id) {
     include: [
       {
         model: products,
-        as: 'products',
+        as: 'Products',
       },
     ],
   });
-  return sale;
+  const seller = await users.findOne({ where: { id: sale.sellerId } });
+  return { sale, seller };
+}
+
+async function changeStatus(id, status) {
+  await sales.update({ status }, { where: { id } });
+  const sale = await sales.findOne({ where: { id } });
+  return sale; 
 }
 
 module.exports = {
   createSales,
   getAllSales,
   getSalesById,
+  changeStatus,
 };
