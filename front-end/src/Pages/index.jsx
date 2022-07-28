@@ -4,6 +4,7 @@ import Admin from './Admin';
 import Register from './Register';
 import Order from './Order';
 import Checkout from './Checkout';
+import Details from './Details';
 
 const PAGES = {
   Login,
@@ -12,6 +13,7 @@ const PAGES = {
   Admin,
   Order,
   Checkout,
+  Details,
 };
 
 export default PAGES;
